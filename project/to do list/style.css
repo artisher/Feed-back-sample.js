@@ -1,0 +1,255 @@
+* {
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(25, 25, 25);
+}
+
+.header {
+    text-align: center;
+    align-items: center;
+    background-color: rgb(25, 25, 25);
+    height: 230px;
+
+}
+
+.headTitle {
+
+    color: rgb(48, 196, 109);
+    text-align: center;
+    align-items: center;
+    margin-top: 90px;
+    font-size: 70px;
+    font-weight: 600;
+
+}
+
+.container {
+    border: 5px solid rgb(48, 196, 109);
+    background-color: rgb(31, 31, 31);
+    width: 80%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin: auto;
+    height: 80vh;
+    border-radius: 10px;
+}
+
+ul {
+    flex-direction: column;
+    display: flex;
+    padding-left: 30px;
+    padding-top: 40px;
+}
+
+li {
+
+    font-weight: 300;
+    letter-spacing: 0.5px;
+    font-size: 20px;
+    background: rgba(255, 255, 255, 0.81);
+    padding: 13px;
+    margin: 5px 0;
+    border-radius: 5px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.123);
+    transition: opacity 0.7s ease-out;
+
+
+}
+
+
+.taskBox {
+
+    max-height: 1000px;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+.time {
+
+    all: unset;
+    width: 180px;
+    height: 50px;
+    background-color: rgba(255, 255, 255, 0.81);
+}
+
+input[type="time"] {
+    appearance: none;
+    /* حذف استایل پیش‌فرض */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 3px solid rgb(48, 196, 109);
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 22px;
+    background-color: rgba(255, 255, 255, 0.819);
+    color: rgb(25, 25, 25);
+    width: 160px;
+    cursor: pointer;
+    text-align: center;
+}
+
+input[type="date"] {
+
+    appearance: none;
+    /* حذف استایل پیش‌فرض */
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    border: 3px solid rgb(48, 196, 109);
+    border-radius: 8px;
+    padding: 5px;
+    font-size: 22px;
+    background-color: rgba(255, 255, 255, 0.819);
+    color: rgb(25, 25, 25);
+    width: 160px;
+    cursor: pointer;
+    text-align: center;
+    width: 100%;
+    height: 100%;
+}
+
+.dateArea {
+    margin-top: 30px;
+    width: 200px;
+    height: 100px;
+}
+
+.manageBox {
+    border-left: 3px solid rgb(48, 196, 109);
+    background-color: rgb(25, 25, 25);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    margin-right: 5px;
+
+}
+
+.textarea {
+    all: unset;
+    background-color: rgba(255, 255, 255, 0.81);
+    border-radius: 2px;
+    margin-top: 35px;
+    margin-left: 10px;
+    margin-right: 10px;
+    white-space: normal;
+    word-wrap: break-word;
+    overflow: hidden;
+    height: 150px;
+    border-radius: 5px;
+    color: rgba(25, 25, 25);
+    font-size: 20px;
+}
+
+.textarea::placeholder {
+    color: rgb(25, 25, 25);
+    padding-left: 8px;
+    padding-top: 5px;
+}
+
+.controllers {
+    all: unset;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 40px;
+}
+
+.controller {
+    all: unset;
+    text-align: center;
+    border-radius: 5px;
+    background-color: rgb(25, 25, 25);
+    color: rgba(255, 255, 255, 0.81);
+    border: 3.5px solid rgb(48, 196, 109);
+    margin-top: 30px;
+    width: 250px;
+    height: 40px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: 600;
+    transition: all 0.3s ease-in-out;
+}
+
+.controller:hover {
+    background-color: rgb(48, 196, 109);
+    color: white;
+    border-color: rgb(31, 235, 116);
+    transform: scale(1.05);
+}
+
+.controller:active {
+    background-color: rgb(37, 210, 109);
+    transform: scale(0.95);
+}
+
+.selected {
+
+    background-color: rgba(82, 158, 114, 1);
+    color: white;
+
+
+}
+
+li::marker {
+    color: rgba(255, 255, 255, 0.81);
+}
+
+li.selected::marker {
+    color: rgba(47, 191, 69, 0.81);
+}
+
+@keyframes scaleDown {
+    from {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    to {
+        transform: scale(0);
+        opacity: 0;
+    }
+}
+
+.scale-down {
+    animation: scaleDown 0.8s forwards;
+}
+
+@media screen and (max-width :992px) {
+    .container {
+        height: auto;
+        flex-direction: column;
+    }
+
+    .manageBox {
+        width: 100%;
+        border: 1px solid;
+        margin-top: 30px;
+    }
+
+    .controllers {
+        margin-bottom: 20px;
+    }
+
+}
+
+@media screen and (max-width :640px) {
+
+    .headTitle {
+        font-size: 55px;
+    }
+
+    .manageBox {
+        margin-top: 80px;
+    }
+
+    .deselectAllButton {
+        margin-bottom: 10px;
+    }
+}

@@ -1,0 +1,13 @@
+:root{
+--mosi:#13a73f;
+/* اینحوری میتونی تایید کنی  */
+}
+.position{
+    height: 100vh;
+    background-color: aqua;
+}
+.items{
+    background-color: #13a73f;
+    height: 50px;
+    border: solid orange;
+}

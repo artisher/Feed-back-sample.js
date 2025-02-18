@@ -9,7 +9,7 @@ const BASE_API_URL = 'https://bytegrad.com/course-assets/js/1/api/';
 
 
 //test
-
+console.log("hi")
 //function
 const render = feedback => {
     const feedItem = `
