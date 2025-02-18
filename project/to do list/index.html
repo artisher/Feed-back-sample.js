@@ -1,0 +1,69 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mosi To-Do-List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400;500;600;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+        integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+        crossorigin="anonymous" referrerpolicy="no-referrer">
+    <link rel="stylesheet" href="style.css">
+    <script src="myscript.js" defer></script>
+
+
+
+</head>
+
+<body>
+    <div class="header">
+        <div class="background">
+            <div class="title">
+                <h1 class="headTitle">
+                    Mosi To-Do-List
+                </h1>
+
+            </div>
+
+        </div>
+    </div>
+    <div class="container">
+        <div class="taskBox">
+            <ul class="taskList">
+
+            </ul>
+        </div>
+        <div class="manageBox">
+            <textarea class="textarea" placeholder="Enter your task"></textarea>
+
+            <section class="controllers">
+                <section class="timeControl">
+                    <input class="time" type="time" id="appt" name="appt">
+                </section>
+                <section class="controllerButton ">
+                    <button class="addButton controller">Add</button>
+                </section>
+                <section class="controllerButton  ">
+                    <button class="deleteButton controller">Done</button>
+                </section>
+                <section class="controllerButton">
+                    <button class="controller deselectAllButton">Deselect All</button>
+
+                </section>
+                <section class="dateArea">
+                    <input type="text" id="jalaliDate" placeholder="تاریخ را انتخاب کنید">
+                    <input type="hidden" id="altDate">
+                </section>
+            </section>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

@@ -1,0 +1,31 @@
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>TopLearn.Com</title>
+    <style></style>
+  </head>
+  <body>
+    <h1><a href="https://toplearn.com">TopLearn.Com</a></h1>
+    <p>Hello Iman</p>
+    <p>Hello Parham</p>
+    <p>Hello Sara</p>
+    <p>Hello Mina</p>
+    <p id="demo"></p>
+    <button onclick="myFun()">Click me !</button>
+    <script>
+      var myCollection = document.getElementsByTagName("p");
+      document.getElementById("demo").innerHTML = myCollection[1].innerHTML;
+      // alert(myCollection.length);
+
+      function myFun() {
+        var myColl = document.getElementsByTagName("p");
+        var i;
+        for (i = 0; i < myColl.length; i++) {
+          myColl[i].style.color = "red";
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,15 @@
+.content {
+    background-color: rgb(148, 148, 148);
+    position: relative;
+    width: 500px;
+    height: 500px;
+    border-radius: 5px;
+}
+.mover {
+    background-color: gold;
+    position: absolute;
+    width: 48px;
+    height: 48px;
+    border-radius: 5px;
+    border: 2px solid rgb(255, 255, 255);
+}
