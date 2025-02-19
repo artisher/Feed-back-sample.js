@@ -6,7 +6,7 @@ const feedsEl = document.querySelector('.feedbacks');
 const submitEl = document.querySelector('.submit-btn');
 const spinnerEl = document.querySelector('.spinner');
 const BASE_API_URL = 'https://bytegrad.com/course-assets/js/1/api/';
-
+const hashtagsEl = document.querySelector('.hashtags');
 
 
 //function
@@ -97,37 +97,77 @@ const submitHandler = (event) => {
     submitEl.blur();
     counterEl.textContent = '150';
 }
-const voter = (event)=> {
+const clickHandler = (event) => {
 
-const upvoteBtn = event.target.closest('.upvote');
-const voteCounter = upvoteBtn.querySelector('.upvote__count');
-console.log( voteCounter.textContent );
 
-//const voteAdder = document.querySelector('.upvote__count');
-//console.log(voteAdder);
+
+
+    console.log(event.target);
+
+    const clickedEl = event.target;
+    const upvoteBtn = event.target.closest('.upvote');
+    if (upvoteBtn) {
+        const voteCounter = upvoteBtn.querySelector('.upvote__count');
+        voteCounter.textContent = parseInt(voteCounter.textContent) + 1;
+        upvoteBtn.disabled = true
+    }
+
+    if (clickedEl.classList.contains('feedback__text')) {
+
+        clickedEl.closest('.feedback').classList.toggle('feedback--expand');
+    }
 
 
 }
 
 //API
-fetch(`${BASE_API_URL}feedbacks`)
-    .then(response => {
-        return response.json();
+const getFunc = () =>{fetch(`${BASE_API_URL}feedbacks`)
+.then(response => {
+    return response.json();
+})
+.then(data => {
+
+
+    data.feedbacks.forEach(feedsItem => {
+        render(feedsItem)
+    });
+    spinnerEl.remove();
+
+})
+.catch(error => {
+    feedsEl.textContent = `failed to fetch Data. error : ${error.message}`
+}
+);}
+
+getFunc();
+
+
+
+
+const hashtagHandler = event => {
+    
+    const clickedHashtag = event.target;
+    if (clickedHashtag.className === 'hashtags') return;
+    getFunc()
+    const companyNameFromHashtag = clickedHashtag.textContent.slice(1).trim();
+
+    feedsEl.childNodes.forEach(childNode => {
+        if (childNode.nodeType === 3) return;
+        const companyNameFromFeedbackItem = childNode.querySelector('.feedback__company').textContent.toLowerCase().trim();
+
+
+        if (companyNameFromHashtag.toLowerCase().trim() !== companyNameFromFeedbackItem) {
+            childNode.remove();
+        }
+
+
     })
-    .then(data => {
 
 
-        data.feedbacks.forEach(feedsItem => {
-            render(feedsItem)
-        });
-        spinnerEl.remove();
+}
 
-    })
-    .catch(error => {
-        feedsEl.textContent = `failed to fetch Data. error : ${error.message}`
-    }
-    );
 //event listener
 textAreaEl.addEventListener('input', inputHandler);
 formEl.addEventListener('submit', submitHandler);
-feedsEl.addEventListener('click',voter);
+feedsEl.addEventListener('click', clickHandler);
+hashtagsEl.addEventListener('click', hashtagHandler);
