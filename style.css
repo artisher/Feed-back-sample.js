@@ -71,7 +71,7 @@ button {
 
 /* BASE */
 .body {
-    background-image: linear-gradient(200deg, #654a86, #534292);
+    background-image: linear-gradient(120deg, #02b5d7, #0184b1);
     min-height: 100vh;
     font-family: 'Inter', sans-serif;
     display: flex;
@@ -119,7 +119,7 @@ button {
 /* HEADER */
 .header {
     height: 277px;
-    background-color: #121618;
+    background-color: #4d4d4d;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -165,6 +165,7 @@ button {
     margin-top: 20px;
     height: 123px;
     width: 470px;
+    border: 1px solid #a6a6a6;
     background-color: rgba(255, 255, 255, 0.04);
     border-radius: 6px;
     overflow: hidden;
@@ -371,7 +372,7 @@ button {
     height: 49px;
     width: 49px;
     border-radius: 6px;
-    background-color: #564989;
+    background-color: #5330dc;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -381,23 +382,23 @@ button {
 }
 
 .feedback:nth-child(6n+2) .feedback__badge {
-    background-color: #6D4989;
+    background-color: #4d669b;
 }
 
 .feedback:nth-child(6n+3) .feedback__badge {
-    background-color: #3c7789;
+    background-color: #913dff;
 }
 
 .feedback:nth-child(6n+4) .feedback__badge {
-    background-color: #897749;
+    background-color: #2a53e8;
 }
 
 .feedback:nth-child(6n+5) .feedback__badge {
-    background-color: #4a8b6b;
+    background-color: #2681f8;
 }
 
 .feedback:nth-child(6n+6) .feedback__badge {
-    background-color: #495789;
+    background-color: #213b97;
 }
 
 .feedback__letter {
@@ -502,9 +503,9 @@ button {
     align-self: flex-start;
     font-size: 13px;
     font-weight: 400;
-    color: rgba(255, 255, 255, 0.6);
+    color: rgba(228, 228, 228, 0.6);
     padding: 7px 14px 9px;
-    background-color: rgba(255, 255, 255, 0.06);
+    background-color: rgba(255, 255, 255, 0.162);
     border-radius: 500px;
     cursor: pointer;
     transition: all 0.2s;

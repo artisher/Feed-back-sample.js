@@ -7,7 +7,9 @@ const submitEl = document.querySelector('.submit-btn');
 const spinnerEl = document.querySelector('.spinner');
 const BASE_API_URL = 'https://bytegrad.com/course-assets/js/1/api/';
 const hashtagsEl = document.querySelector('.hashtags');
+const hashtagList = document.querySelector('.hashtags');
 
+const uniqueHashtags = new Set(); 
 
 //function
 const render = feedback => {
@@ -27,28 +29,29 @@ const render = feedback => {
   <p class="feedback__date">${feedback.daysAgo === 0 ? "New" : feedback.daysAgo}d</p>
   </li>`;
     feedsEl.insertAdjacentHTML('beforeend', feedItem);
+    
+    if (!uniqueHashtags.has(feedback.company)) {
+        uniqueHashtags.add(feedback.company);
+        const addHashtag = `<li class="hashtags__item"><button class="hashtag">#${feedback.company}</button></li>`;
+        hashtagList.insertAdjacentHTML('beforeend', addHashtag);
+    }
 }
 
 const inputHandler = () => {
     const maxChar = 150;
     const typedChar = textAreaEl.value.length;
     const charLeft = maxChar - typedChar;
-
-
     counterEl.textContent = charLeft;
-
 };
 
-// class ke be onvan voroodi oomade ro hazf mikone 
 const colorChanger = (className) => {
     setTimeout(() => formEl.classList.remove(className), 2000)
 }
 
-
 const submitHandler = (event) => {
     event.preventDefault();
     const text = textAreaEl.value;
-    if (text.includes('#') && text.length >= 5) { // agar bozorgtar az 5 char va # dasht class valid ro bede ke sabz behse
+    if (text.includes('#') && text.length >= 5) {
         formEl.classList.add('form--valid')
         colorChanger('form--valid');
     } else {
@@ -58,14 +61,11 @@ const submitHandler = (event) => {
         return;
     }
 
-    const hashtag = text.split(' ').find((word) => word.includes("#"));// bia kalamt ro joda kon va to harkalame ke # bood ro peyda kon
+    const hashtag = text.split(' ').find((word) => word.includes("#"));
     const company = hashtag.slice(1);
     const badgeLetter = company.slice(0, 1).toUpperCase();
     const upvoteCount = 0;
     const daysAgo = 0;
-
-
-
 
     const feed = {
         company: company,
@@ -74,9 +74,8 @@ const submitHandler = (event) => {
         daysAgo: daysAgo,
         text: text
     }
-    render(feed)
+    render(feed);
 
-    // Post to server
     fetch(`${BASE_API_URL}feedbacks`, {
         method: 'POST',
         body: JSON.stringify(feed),
@@ -90,80 +89,56 @@ const submitHandler = (event) => {
             return;
         }
         console.log("Success !!!");
-
     }).catch(error => console.log(error));
 
-    textAreaEl.value = ' ';
+    textAreaEl.value = '';
     submitEl.blur();
     counterEl.textContent = '150';
 }
+
 const clickHandler = (event) => {
-
-
-
-
-    console.log(event.target);
-
     const clickedEl = event.target;
     const upvoteBtn = event.target.closest('.upvote');
     if (upvoteBtn) {
         const voteCounter = upvoteBtn.querySelector('.upvote__count');
         voteCounter.textContent = parseInt(voteCounter.textContent) + 1;
-        upvoteBtn.disabled = true
+        upvoteBtn.disabled = true;
     }
 
     if (clickedEl.classList.contains('feedback__text')) {
-
         clickedEl.closest('.feedback').classList.toggle('feedback--expand');
     }
-
-
 }
 
-//API
-const getFunc = () =>{fetch(`${BASE_API_URL}feedbacks`)
-.then(response => {
-    return response.json();
-})
-.then(data => {
-
-
-    data.feedbacks.forEach(feedsItem => {
-        render(feedsItem)
-    });
-    spinnerEl.remove();
-
-})
-.catch(error => {
-    feedsEl.textContent = `failed to fetch Data. error : ${error.message}`
+const getFunc = () => {
+    fetch(`${BASE_API_URL}feedbacks`)
+        .then(response => response.json())
+        .then(data => {
+            data.feedbacks.forEach(feedsItem => {
+                render(feedsItem);
+            });
+            spinnerEl.remove();
+        })
+        .catch(error => {
+            feedsEl.textContent = `failed to fetch Data. error : ${error.message}`;
+        });
 }
-);}
 
 getFunc();
 
-
-
-
 const hashtagHandler = event => {
-    
     const clickedHashtag = event.target;
     if (clickedHashtag.className === 'hashtags') return;
-    getFunc()
+    getFunc();
     const companyNameFromHashtag = clickedHashtag.textContent.slice(1).trim();
 
     feedsEl.childNodes.forEach(childNode => {
         if (childNode.nodeType === 3) return;
         const companyNameFromFeedbackItem = childNode.querySelector('.feedback__company').textContent.toLowerCase().trim();
-
-
         if (companyNameFromHashtag.toLowerCase().trim() !== companyNameFromFeedbackItem) {
             childNode.remove();
         }
-
-
-    })
-
-
+    });
 }
 
 //event listener
